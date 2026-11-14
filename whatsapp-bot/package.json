@@ -1,0 +1,17 @@
+{
+  "name": "itca-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot Connector para ITCA Santa Ana con Baileys y Spring Boot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.13",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pino": "^9.6.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}

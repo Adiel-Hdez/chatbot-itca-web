@@ -1,6 +1,8 @@
 # Dependencies
 node_modules/
 target/
+whatsapp-bot/auth_info_baileys/
+whatsapp-bot/node_modules/
 
 # Build outputs
 dist/
@@ -42,3 +44,4 @@ Thumbs.db
 
 # Maven wrapper jar if desired
 .mvn/wrapper/maven-wrapper.jar
+
