@@ -49,93 +49,125 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background radial gradients */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl shadow-2xl p-8 backdrop-blur-xl relative z-10">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-indigo-600 text-white shadow-lg shadow-emerald-500/20 mb-4">
-            <span className="text-3xl">📱</span>
+    <div className="min-h-screen bg-slate-900 flex flex-col justify-between relative overflow-hidden font-sans">
+      {/* Barra superior institucional ITCA */}
+      <div className="w-full bg-[#851016] text-white px-6 py-3 shadow-md flex items-center justify-between z-10 border-b border-[#a81c24]">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-[#d4a017] flex items-center justify-center text-[#851016] font-extrabold text-sm shadow">
+            IT
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Panel Administrativo</h1>
-          <p className="text-sm text-indigo-300 font-medium mt-1">Chatbot WhatsApp · ITCA Santa Ana</p>
-          <p className="text-xs text-slate-400 mt-2">
-            Gestiona preguntas, respuestas institucionales y supervisa los mensajes de los aspirantes.
-          </p>
+          <div>
+            <div className="flex items-center gap-1.5 font-black text-sm tracking-wide">
+              <span>ITCA</span>
+              <span className="text-[#f59e0b]">⚡</span>
+              <span>FEPADE</span>
+            </div>
+            <p className="text-[10px] text-white/80 uppercase tracking-widest font-medium">
+              Centro Regional Santa Ana
+            </p>
+          </div>
         </div>
+        <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-white/90 font-medium">
+          Portal Administrativo
+        </span>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Correo Electrónico
-            </label>
-            <div className="relative">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">✉️</span>
-              <input
-                type="email"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                placeholder="admin@itca.edu.sv"
-                className="w-full pl-10 pr-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
-                required
-              />
+      {/* Login Card */}
+      <div className="flex-1 flex items-center justify-center p-4 relative z-10">
+        <div className="w-full max-w-md bg-slate-800/95 border border-slate-700/80 rounded-3xl shadow-2xl p-8 backdrop-blur-xl">
+          {/* Logo Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#851016] via-[#9e1b32] to-[#a31d1d] text-white shadow-xl shadow-[#851016]/40 mb-4 border border-[#d4a017]/40">
+              <span className="text-3xl">🏛️</span>
             </div>
+            <h1 className="text-2xl font-black text-white tracking-tight">Panel Administrativo</h1>
+            <p className="text-xs text-[#d4a017] font-bold tracking-wider uppercase mt-1">
+              Chatbot WhatsApp · ITCA Santa Ana
+            </p>
+            <p className="text-xs text-slate-300 mt-2">
+              Gestión de preguntas y respuestas oficiales para aspirantes y estudiantes.
+            </p>
           </div>
 
-          <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Contraseña
-            </label>
-            <div className="relative">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔒</span>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
-                required
-              />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                Correo Electrónico
+              </label>
+              <div className="relative">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">✉️</span>
+                <input
+                  type="email"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  placeholder="admin@itca.edu.sv"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] transition-all"
+                  required
+                />
+              </div>
             </div>
-            <p className="text-[11px] text-slate-500 mt-1.5">Contraseña por defecto: <span className="text-emerald-400 font-mono">itca</span></p>
-          </div>
 
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-red-300 text-xs text-center">
-              {error}
+            <div>
+              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                Contraseña
+              </label>
+              <div className="relative">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔒</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] transition-all"
+                  required
+                />
+              </div>
+              <p className="text-[11px] text-slate-400 mt-1.5">
+                Contraseña por defecto: <span className="text-[#f59e0b] font-mono font-bold">itca</span>
+              </p>
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3.5 mt-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/25 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
-          >
-            {loading ? (
-              <>
-                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                </svg>
-                <span>Accediendo...</span>
-              </>
-            ) : (
-              <>
-                <span>Ingresar al Administrador</span>
-                <span>→</span>
-              </>
+            {error && (
+              <div className="bg-red-500/15 border border-red-500/40 rounded-xl p-3 text-red-200 text-xs text-center font-medium">
+                {error}
+              </div>
             )}
-          </button>
-        </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-800 text-center">
-          <p className="text-xs text-slate-500">
-            Escuela Especializada en Ingeniería ITCA-FEPADE<br />Centro Regional Santa Ana
-          </p>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#851016] via-[#9e1b32] to-[#851016] hover:from-[#700d12] hover:to-[#851016] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#851016]/30 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer border border-[#d4a017]/30"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  <span>Iniciando sesión...</span>
+                </>
+              ) : (
+                <>
+                  <span>Ingresar al Sistema</span>
+                  <span>→</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="mt-8 pt-6 border-t border-slate-700/80 text-center">
+            <p className="text-xs text-slate-400">
+              Escuela Especializada en Ingeniería <strong className="text-white">ITCA-FEPADE</strong><br />
+              Centro Regional Santa Ana
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* Footer bar */}
+      <footer className="w-full py-3 text-center text-xs text-slate-500 border-t border-slate-800 bg-slate-950">
+        © 2026 ITCA-FEPADE · Regional Santa Ana · Asistente Virtual Oficial
+      </footer>
     </div>
   )
 }

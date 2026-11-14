@@ -114,20 +114,20 @@ export default function WhatsAppSimulator() {
 
   return (
     <div className="flex flex-col h-[750px] bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
-      {/* WhatsApp Header */}
-      <div className="bg-[#1f2c34] px-4 py-3 flex items-center justify-between border-b border-[#2a3942]">
+      {/* WhatsApp Header con Acento ITCA */}
+      <div className="bg-[#1f2c34] px-4 py-3 flex items-center justify-between border-b border-[#2a3942] border-t-4 border-t-[#851016]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
+          <div className="w-10 h-10 rounded-full bg-[#851016] border border-[#d4a017] flex items-center justify-center text-[#d4a017] font-bold text-lg shadow-md">
             🏛️
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-white font-semibold text-sm">ITCA Santa Ana · WhatsApp Bot</h3>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-medium">
-                Simulador en Vivo
+              <h3 className="text-white font-bold text-sm">ITCA Santa Ana · Bot Oficial</h3>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#851016]/40 text-[#f59e0b] font-bold border border-[#d4a017]/30">
+                Simulador
               </span>
             </div>
-            <p className="text-xs text-emerald-400">en línea · Respondiendo con base en FAQs</p>
+            <p className="text-xs text-emerald-400">en línea · Conectado a Spring Boot y MySQL</p>
           </div>
         </div>
 
@@ -236,3 +236,4 @@ export default function WhatsAppSimulator() {
     </div>
   )
 }
+

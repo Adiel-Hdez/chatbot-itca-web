@@ -69,3 +69,4 @@ public class AdminLoginResponse {
         this.rol = rol;
     }
 }
+

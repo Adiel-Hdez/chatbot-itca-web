@@ -49,3 +49,4 @@ public class BotMessageResponse {
         this.matchType = matchType;
     }
 }
+

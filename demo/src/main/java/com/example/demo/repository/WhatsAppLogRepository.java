@@ -10,3 +10,4 @@ import java.util.List;
 public interface WhatsAppLogRepository extends JpaRepository<WhatsAppLog, Long> {
     List<WhatsAppLog> findTop30ByOrderByCreatedAtDesc();
 }
+

@@ -59,3 +59,4 @@ public class FaqRequest {
         this.activo = activo;
     }
 }
+

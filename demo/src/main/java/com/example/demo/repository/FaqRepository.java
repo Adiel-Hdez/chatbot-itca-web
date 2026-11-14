@@ -21,3 +21,4 @@ public interface FaqRepository extends JpaRepository<Faq, Long> {
     @Query("SELECT DISTINCT f.categoria FROM Faq f ORDER BY f.categoria ASC")
     List<String> findDistinctCategorias();
 }
+

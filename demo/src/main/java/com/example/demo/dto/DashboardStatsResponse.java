@@ -61,3 +61,4 @@ public class DashboardStatsResponse {
         this.categories = categories;
     }
 }
+

@@ -115,7 +115,7 @@ async function connectToWhatsApp() {
         // Enviar al Backend Spring Boot
         const response = await fetch(BACKEND_API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
           body: JSON.stringify({
             message: messageText,
             from: senderNumber,
@@ -147,3 +147,4 @@ async function connectToWhatsApp() {
 }
 
 connectToWhatsApp()
+

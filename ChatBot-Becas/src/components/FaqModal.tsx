@@ -149,7 +149,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
                   setCategoria(e.target.value)
                   setIsCustomCategory(e.target.value === 'CUSTOM')
                 }}
-                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#851016]"
               >
                 {allCategories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -165,7 +165,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
                   placeholder="Nombre de la nueva categoría"
                   value={customCategoria}
                   onChange={(e) => setCustomCategoria(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
                   required
                 />
               )}
@@ -182,7 +182,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               placeholder="Ej: ¿Cuáles son las cuotas y formas de pago?"
               value={pregunta}
               onChange={(e) => setPregunta(e.target.value)}
-              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
               required
             />
           </div>
@@ -200,7 +200,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               placeholder="Ej: cuota, mensualidad, arancel, pago, cuanto cuesta, precio"
               value={palabrasClave}
               onChange={(e) => setPalabrasClave(e.target.value)}
-              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
               required
             />
             <p className="text-[11px] text-slate-400 mt-1">
@@ -214,14 +214,14 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Respuesta Oficial de WhatsApp
               </label>
-              <span className="text-[11px] text-emerald-400">Admite *negritas*, saltos de línea y enlaces</span>
+              <span className="text-[11px] text-[#f59e0b] font-medium">Admite *negritas*, saltos de línea y enlaces</span>
             </div>
             <textarea
               rows={6}
               placeholder="Escribe la respuesta detallada con enlaces y emojis..."
               value={respuesta}
               onChange={(e) => setRespuesta(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-sans leading-relaxed"
+              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] font-sans leading-relaxed"
               required
             />
           </div>
@@ -233,7 +233,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               id="faq-activo"
               checked={activo}
               onChange={(e) => setActivo(e.target.checked)}
-              className="w-4 h-4 text-emerald-600 bg-slate-900 border-slate-700 rounded focus:ring-emerald-500 cursor-pointer"
+              className="w-4 h-4 text-[#851016] bg-slate-900 border-slate-700 rounded focus:ring-[#851016] cursor-pointer"
             />
             <label htmlFor="faq-activo" className="text-sm font-medium text-slate-200 cursor-pointer">
               Habilitar respuesta en el Bot de WhatsApp ({activo ? '🟢 Activa' : '⏸️ Pausada'})
@@ -258,7 +258,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-emerald-600/20 transition-all cursor-pointer disabled:opacity-50 flex items-center gap-2"
+              className="px-6 py-2.5 bg-gradient-to-r from-[#851016] to-[#a31d1d] hover:from-[#700d12] hover:to-[#851016] text-white text-sm font-bold rounded-xl shadow-lg shadow-[#851016]/20 transition-all cursor-pointer disabled:opacity-50 flex items-center gap-2 border border-[#d4a017]/30"
             >
               {saving ? 'Guardando...' : faq ? 'Actualizar FAQ' : 'Guardar FAQ'}
             </button>
@@ -268,3 +268,4 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
     </div>
   )
 }
+

@@ -3,8 +3,12 @@
 -- WhatsApp Bot + Panel Web Administrativo
 -- =======================================================
 
-CREATE DATABASE IF NOT EXISTS chatbot;
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
+CREATE DATABASE IF NOT EXISTS chatbot CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE chatbot;
+ALTER DATABASE chatbot CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Tabla de preguntas y respuestas oficiales (FAQs)
 CREATE TABLE IF NOT EXISTS faqs (
@@ -16,7 +20,7 @@ CREATE TABLE IF NOT EXISTS faqs (
     activo BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de administradores del panel web
 CREATE TABLE IF NOT EXISTS admins (
@@ -26,7 +30,7 @@ CREATE TABLE IF NOT EXISTS admins (
     password VARCHAR(100) NOT NULL,
     rol VARCHAR(50) DEFAULT 'ADMIN',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Usuario admin por defecto (contraseña: itca)
 INSERT IGNORE INTO admins (nombre, correo, password, rol) 
@@ -40,7 +44,7 @@ CREATE TABLE IF NOT EXISTS whatsapp_logs (
     respuesta_enviada TEXT NOT NULL,
     coincidencia_tipo VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Inserción del catálogo completo de preguntas y respuestas oficiales
 DELETE FROM faqs;

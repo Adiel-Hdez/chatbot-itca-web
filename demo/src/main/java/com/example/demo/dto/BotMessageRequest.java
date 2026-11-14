@@ -29,3 +29,4 @@ public class BotMessageRequest {
         this.from = from;
     }
 }
+

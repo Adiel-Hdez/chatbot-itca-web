@@ -37,7 +37,7 @@ export default function WhatsAppLogsTable() {
   }
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl">
+    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl border-l-4 border-l-[#851016]">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-bold text-white flex items-center gap-2">
@@ -50,7 +50,7 @@ export default function WhatsAppLogsTable() {
         <button
           onClick={fetchLogs}
           disabled={loading}
-          className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all flex items-center gap-2 cursor-pointer"
+          className="px-4 py-2 bg-gradient-to-r from-[#851016] to-[#a31d1d] hover:from-[#700d12] hover:to-[#851016] text-white text-xs font-bold rounded-xl border border-[#d4a017]/30 transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-[#851016]/20"
         >
           <span>🔄</span>
           <span>{loading ? 'Actualizando...' : 'Refrescar'}</span>
@@ -112,3 +112,4 @@ export default function WhatsAppLogsTable() {
     </div>
   )
 }
+

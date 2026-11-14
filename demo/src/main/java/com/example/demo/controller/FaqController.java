@@ -79,3 +79,4 @@ public class FaqController {
         return ResponseEntity.ok(faqService.getStats());
     }
 }
+

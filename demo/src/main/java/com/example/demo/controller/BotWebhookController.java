@@ -34,3 +34,4 @@ public class BotWebhookController {
         return ResponseEntity.ok(whatsAppLogRepository.findTop30ByOrderByCreatedAtDesc());
     }
 }
+
