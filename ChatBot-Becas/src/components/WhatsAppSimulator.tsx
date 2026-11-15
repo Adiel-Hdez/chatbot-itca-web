@@ -57,7 +57,7 @@ export default function WhatsAppSimulator() {
     try {
       const res = await fetch('http://localhost:8080/api/bot/message', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify({ message: textToSend.trim(), from: '503-simulador' }),
       })
 
@@ -97,7 +97,7 @@ export default function WhatsAppSimulator() {
     return parts.map((part, i) => {
       if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
         return (
-          <strong key={i} className="font-semibold text-emerald-200">
+          <strong key={i} className="font-bold text-slate-900">
             {part.slice(1, -1)}
           </strong>
         )
@@ -113,21 +113,21 @@ export default function WhatsAppSimulator() {
   }
 
   return (
-    <div className="flex flex-col h-[750px] bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-[750px] bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
       {/* WhatsApp Header con Acento ITCA */}
-      <div className="bg-[#1f2c34] px-4 py-3 flex items-center justify-between border-b border-[#2a3942] border-t-4 border-t-[#851016]">
+      <div className="bg-[#851016] px-4 py-3 flex items-center justify-between text-white shadow-sm border-b border-[#6e0d12]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#851016] border border-[#d4a017] flex items-center justify-center text-[#d4a017] font-bold text-lg shadow-md">
+          <div className="w-10 h-10 rounded-full bg-[#d4a017] text-[#851016] flex items-center justify-center font-bold text-lg shadow-sm">
             🏛️
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-white font-bold text-sm">ITCA Santa Ana · Bot Oficial</h3>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#851016]/40 text-[#f59e0b] font-bold border border-[#d4a017]/30">
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#d4a017] text-[#851016] font-extrabold uppercase">
                 Simulador
               </span>
             </div>
-            <p className="text-xs text-emerald-400">en línea · Conectado a Spring Boot y MySQL</p>
+            <p className="text-xs text-white/90 font-medium">en línea · Conectado a Spring Boot y MySQL</p>
           </div>
         </div>
 
@@ -143,70 +143,70 @@ export default function WhatsAppSimulator() {
               },
             ])
           }
-          className="text-xs text-slate-400 hover:text-slate-200 px-3 py-1.5 bg-slate-800/80 hover:bg-slate-700 rounded-lg transition-all cursor-pointer"
+          className="text-xs text-white bg-black/25 hover:bg-black/40 px-3 py-1.5 rounded-xl border border-white/20 transition-all cursor-pointer font-medium"
         >
           Limpiar chat
         </button>
       </div>
 
       {/* Quick Test Chips */}
-      <div className="bg-[#111b21] px-4 py-2 border-b border-[#222e35] flex items-center gap-2 overflow-x-auto scrollbar-none">
-        <span className="text-[11px] text-slate-400 whitespace-nowrap">Pruebas rápidas:</span>
+      <div className="bg-slate-50 px-4 py-2.5 border-b border-slate-200 flex items-center gap-2 overflow-x-auto scrollbar-none">
+        <span className="text-xs font-semibold text-slate-500 whitespace-nowrap">Pruebas rápidas:</span>
         {QUICK_TESTS.map((t, idx) => (
           <button
             key={idx}
             onClick={() => sendMessage(t)}
             disabled={loading}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 whitespace-nowrap transition-all cursor-pointer disabled:opacity-50"
+            className="text-xs px-3 py-1 rounded-full bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-300 whitespace-nowrap transition-all cursor-pointer disabled:opacity-50 font-medium shadow-2xs"
           >
             {t}
           </button>
         ))}
       </div>
 
-      {/* Messages area (WhatsApp style dark theme) */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#0b141a] bg-opacity-95">
+      {/* Messages area (WhatsApp style light canvas) */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#efeae2] bg-opacity-70">
         {messages.map((msg) => (
           <div
             key={msg.id}
             className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
           >
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-2.5 shadow-md relative ${
+              className={`max-w-[85%] rounded-2xl px-4 py-2.5 shadow-sm relative ${
                 msg.role === 'user'
-                  ? 'bg-[#005c4b] text-white rounded-tr-none'
-                  : 'bg-[#202c33] text-slate-100 rounded-tl-none border border-[#2a3942]'
+                  ? 'bg-[#d9fdd3] text-slate-900 rounded-tr-none'
+                  : 'bg-white text-slate-800 rounded-tl-none border border-slate-200/80'
               }`}
             >
               <div className="text-sm leading-relaxed whitespace-pre-wrap font-sans">
                 {formatText(msg.text)}
               </div>
 
-              <div className="flex items-center justify-end gap-1.5 mt-1.5 pt-1 border-t border-white/5">
+              <div className="flex items-center justify-end gap-1.5 mt-1.5 pt-1 border-t border-slate-200/50">
                 {msg.matchType && (
                   <span
-                    className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${
+                    className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-bold ${
                       msg.matchType === 'DIRECT_FAQ'
-                        ? 'bg-emerald-500/20 text-emerald-300'
+                        ? 'bg-emerald-100 text-emerald-800'
                         : msg.matchType === 'AI_RAG'
-                        ? 'bg-indigo-500/20 text-indigo-300'
-                        : 'bg-slate-700 text-slate-300'
+                        ? 'bg-indigo-100 text-indigo-800'
+                        : 'bg-slate-100 text-slate-700'
                     }`}
                   >
                     {msg.matchType === 'DIRECT_FAQ' ? '⚡ FAQ Exacta' : msg.matchType === 'AI_RAG' ? '🤖 RAG Gemini' : msg.matchType}
                   </span>
                 )}
-                <span className="text-[10px] text-white/50">{msg.timestamp}</span>
-                {msg.role === 'user' && <span className="text-[11px] text-sky-400 font-bold">✓✓</span>}
+                <span className="text-[10px] text-slate-500">{msg.timestamp}</span>
+                {msg.role === 'user' && <span className="text-[11px] text-[#53bdeb] font-bold">✓✓</span>}
               </div>
             </div>
           </div>
         ))}
 
         {loading && (
-          <div className="flex items-center gap-2 p-3 bg-[#202c33] rounded-2xl rounded-tl-none text-slate-300 text-xs w-fit">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>Consultando base de datos y respondiendo...</span>
+          <div className="flex items-center gap-2 p-3 bg-white rounded-2xl rounded-tl-none text-slate-700 text-xs w-fit border border-slate-200 shadow-sm">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span className="font-medium">Consultando base de conocimientos oficial...</span>
           </div>
         )}
 
@@ -214,21 +214,21 @@ export default function WhatsAppSimulator() {
       </div>
 
       {/* Input area */}
-      <form onSubmit={handleSubmit} className="bg-[#202c33] p-3 flex items-center gap-2 border-t border-[#2a3942]">
+      <form onSubmit={handleSubmit} className="bg-slate-100 p-3 flex items-center gap-2 border-t border-slate-200">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Escribe un mensaje como aspirante de WhatsApp..."
+          placeholder="Escribe una pregunta sobre ITCA Santa Ana..."
           disabled={loading}
-          className="flex-1 py-3 px-4 bg-[#2a3942] border border-transparent rounded-xl text-white text-sm placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition-all"
+          className="flex-1 py-2.5 px-4 bg-white border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] transition-all"
         />
         <button
           type="submit"
           disabled={!input.trim() || loading}
-          className="w-11 h-11 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-md shadow-emerald-600/30 cursor-pointer"
+          className="w-10 h-10 bg-[#851016] hover:bg-[#700d12] text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md shadow-[#851016]/20 cursor-pointer"
         >
-          <svg className="w-5 h-5 rotate-90" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 rotate-90" fill="currentColor" viewBox="0 0 24 24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
           </svg>
         </button>
@@ -236,4 +236,3 @@ export default function WhatsAppSimulator() {
     </div>
   )
 }
-

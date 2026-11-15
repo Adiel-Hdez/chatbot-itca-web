@@ -49,11 +49,11 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col justify-between relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#f8fafc] flex flex-col justify-between font-sans text-slate-800">
       {/* Barra superior institucional ITCA */}
-      <div className="w-full bg-[#851016] text-white px-6 py-3 shadow-md flex items-center justify-between z-10 border-b border-[#a81c24]">
+      <header className="w-full bg-[#851016] text-white px-6 py-3 shadow-md flex items-center justify-between z-10 border-b-2 border-[#d4a017]">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#d4a017] flex items-center justify-center text-[#851016] font-extrabold text-sm shadow">
+          <div className="w-9 h-9 rounded-lg bg-[#d4a017] flex items-center justify-center text-[#851016] font-black text-sm shadow">
             IT
           </div>
           <div>
@@ -62,36 +62,36 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
               <span className="text-[#f59e0b]">⚡</span>
               <span>FEPADE</span>
             </div>
-            <p className="text-[10px] text-white/80 uppercase tracking-widest font-medium">
+            <p className="text-[10px] text-white/90 uppercase tracking-widest font-semibold">
               Centro Regional Santa Ana
             </p>
           </div>
         </div>
-        <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-white/90 font-medium">
+        <span className="text-xs bg-white/15 px-3 py-1 rounded-full text-white font-semibold">
           Portal Administrativo
         </span>
-      </div>
+      </header>
 
       {/* Login Card */}
-      <div className="flex-1 flex items-center justify-center p-4 relative z-10">
-        <div className="w-full max-w-md bg-slate-800/95 border border-slate-700/80 rounded-3xl shadow-2xl p-8 backdrop-blur-xl">
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/60 p-8 sm:p-10">
           {/* Logo Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#851016] via-[#9e1b32] to-[#a31d1d] text-white shadow-xl shadow-[#851016]/40 mb-4 border border-[#d4a017]/40">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#851016] via-[#9e1b32] to-[#851016] text-white shadow-lg shadow-[#851016]/20 mb-4 border-2 border-[#d4a017]">
               <span className="text-3xl">🏛️</span>
             </div>
-            <h1 className="text-2xl font-black text-white tracking-tight">Panel Administrativo</h1>
+            <h1 className="text-2xl font-black text-[#851016] tracking-tight">Panel Administrativo</h1>
             <p className="text-xs text-[#d4a017] font-bold tracking-wider uppercase mt-1">
               Chatbot WhatsApp · ITCA Santa Ana
             </p>
-            <p className="text-xs text-slate-300 mt-2">
+            <p className="text-xs text-slate-500 mt-2">
               Gestión de preguntas y respuestas oficiales para aspirantes y estudiantes.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Correo Electrónico
               </label>
               <div className="relative">
@@ -101,14 +101,14 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
                   value={correo}
                   onChange={(e) => setCorreo(e.target.value)}
                   placeholder="admin@itca.edu.sv"
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] focus:bg-white transition-all font-medium"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Contraseña
               </label>
               <div className="relative">
@@ -118,17 +118,17 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#851016] focus:border-[#851016] focus:bg-white transition-all font-medium"
                   required
                 />
               </div>
-              <p className="text-[11px] text-slate-400 mt-1.5">
-                Contraseña por defecto: <span className="text-[#f59e0b] font-mono font-bold">itca</span>
+              <p className="text-[11px] text-slate-500 mt-1.5 font-medium">
+                Contraseña por defecto: <span className="text-[#851016] font-mono font-bold">itca</span>
               </p>
             </div>
 
             {error && (
-              <div className="bg-red-500/15 border border-red-500/40 rounded-xl p-3 text-red-200 text-xs text-center font-medium">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-red-700 text-xs text-center font-semibold">
                 {error}
               </div>
             )}
@@ -136,7 +136,7 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#851016] via-[#9e1b32] to-[#851016] hover:from-[#700d12] hover:to-[#851016] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#851016]/30 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer border border-[#d4a017]/30"
+              className="w-full py-3.5 mt-2 bg-[#851016] hover:bg-[#700d12] text-white font-bold text-sm rounded-xl shadow-md shadow-[#851016]/25 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer border border-[#d4a017]/40"
             >
               {loading ? (
                 <>
@@ -155,9 +155,9 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-slate-700/80 text-center">
-            <p className="text-xs text-slate-400">
-              Escuela Especializada en Ingeniería <strong className="text-white">ITCA-FEPADE</strong><br />
+          <div className="mt-8 pt-6 border-t border-slate-200 text-center">
+            <p className="text-xs text-slate-500 font-medium">
+              Escuela Especializada en Ingeniería <strong className="text-slate-800">ITCA-FEPADE</strong><br />
               Centro Regional Santa Ana
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
       </div>
 
       {/* Footer bar */}
-      <footer className="w-full py-3 text-center text-xs text-slate-500 border-t border-slate-800 bg-slate-950">
+      <footer className="w-full py-4 text-center text-xs text-slate-500 border-t border-slate-200 bg-white">
         © 2026 ITCA-FEPADE · Regional Santa Ana · Asistente Virtual Oficial
       </footer>
     </div>

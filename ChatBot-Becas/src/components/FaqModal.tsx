@@ -104,33 +104,40 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
         body: JSON.stringify(payload),
       })
 
-      if (!res.ok) throw new Error('Error en el servidor al guardar la FAQ')
+      if (!res.ok) {
+        const errText = await res.text()
+        throw new Error(errText || 'Error al guardar')
+      }
 
-      const savedData: Faq = await res.json()
-      onSave(savedData)
+      const saved: Faq = await res.json()
+      onSave(saved)
       onClose()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Error al guardar')
+      if (err instanceof Error) {
+        setError(err.message || 'Error de conexión con el backend.')
+      } else {
+        setError('Error desconocido al guardar.')
+      }
     } finally {
       setSaving(false)
     }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-      <div className="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8">
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200">
           <div>
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <span>{faq ? '✏️ Editar Pregunta y Respuesta' : '➕ Nueva Pregunta Institucional'}</span>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 mt-0.5">
               Esta información alimentará directamente al bot de WhatsApp en tiempo real.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 flex items-center justify-center transition-all cursor-pointer"
+            className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-200 flex items-center justify-center transition-all cursor-pointer font-bold"
           >
             ✕
           </button>
@@ -139,7 +146,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           {/* Categoria */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               Categoría
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -149,7 +156,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
                   setCategoria(e.target.value)
                   setIsCustomCategory(e.target.value === 'CUSTOM')
                 }}
-                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#851016]"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#851016]"
               >
                 {allCategories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -165,7 +172,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
                   placeholder="Nombre de la nueva categoría"
                   value={customCategoria}
                   onChange={(e) => setCustomCategoria(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#851016]"
                   required
                 />
               )}
@@ -174,7 +181,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
 
           {/* Pregunta */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               Pregunta Frecuente
             </label>
             <input
@@ -182,7 +189,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               placeholder="Ej: ¿Cuáles son las cuotas y formas de pago?"
               value={pregunta}
               onChange={(e) => setPregunta(e.target.value)}
-              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
+              className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#851016]"
               required
             />
           </div>
@@ -190,7 +197,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
           {/* Palabras Clave */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Palabras Clave / Sinónimos
               </label>
               <span className="text-[11px] text-slate-500">Separadas por comas</span>
@@ -200,10 +207,10 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
               placeholder="Ej: cuota, mensualidad, arancel, pago, cuanto cuesta, precio"
               value={palabrasClave}
               onChange={(e) => setPalabrasClave(e.target.value)}
-              className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016]"
+              className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#851016]"
               required
             />
-            <p className="text-[11px] text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-500 mt-1">
               Permite que el bot reconozca la duda aunque el estudiante use distintas palabras.
             </p>
           </div>
@@ -211,54 +218,54 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
           {/* Respuesta Oficial */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Respuesta Oficial de WhatsApp
               </label>
-              <span className="text-[11px] text-[#f59e0b] font-medium">Admite *negritas*, saltos de línea y enlaces</span>
+              <span className="text-[11px] text-[#851016] font-semibold">Admite *negritas*, saltos de línea y enlaces</span>
             </div>
             <textarea
               rows={6}
               placeholder="Escribe la respuesta detallada con enlaces y emojis..."
               value={respuesta}
               onChange={(e) => setRespuesta(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#851016] font-sans leading-relaxed"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#851016] font-sans leading-relaxed"
               required
             />
           </div>
 
           {/* Estado Activo */}
-          <div className="flex items-center gap-3 p-3 bg-slate-800/60 rounded-xl border border-slate-800">
+          <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
             <input
               type="checkbox"
               id="faq-activo"
               checked={activo}
               onChange={(e) => setActivo(e.target.checked)}
-              className="w-4 h-4 text-[#851016] bg-slate-900 border-slate-700 rounded focus:ring-[#851016] cursor-pointer"
+              className="w-4 h-4 text-[#851016] bg-white border-slate-300 rounded focus:ring-[#851016] cursor-pointer"
             />
-            <label htmlFor="faq-activo" className="text-sm font-medium text-slate-200 cursor-pointer">
+            <label htmlFor="faq-activo" className="text-sm font-medium text-slate-800 cursor-pointer">
               Habilitar respuesta en el Bot de WhatsApp ({activo ? '🟢 Activa' : '⏸️ Pausada'})
             </label>
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-red-300 text-xs">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-red-700 text-xs font-medium">
               {error}
             </div>
           )}
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
             <button
               type="button"
               onClick={onClose}
               disabled={saving}
-              className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium rounded-xl transition-all cursor-pointer"
+              className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-xl border border-slate-300 transition-all cursor-pointer"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-2.5 bg-gradient-to-r from-[#851016] to-[#a31d1d] hover:from-[#700d12] hover:to-[#851016] text-white text-sm font-bold rounded-xl shadow-lg shadow-[#851016]/20 transition-all cursor-pointer disabled:opacity-50 flex items-center gap-2 border border-[#d4a017]/30"
+              className="px-6 py-2.5 bg-gradient-to-r from-[#851016] to-[#a31d1d] hover:from-[#700d12] hover:to-[#851016] text-white text-sm font-bold rounded-xl shadow-md shadow-[#851016]/20 transition-all cursor-pointer disabled:opacity-50 flex items-center gap-2 border border-[#d4a017]/40"
             >
               {saving ? 'Guardando...' : faq ? 'Actualizar FAQ' : 'Guardar FAQ'}
             </button>
@@ -268,4 +275,3 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
     </div>
   )
 }
-
