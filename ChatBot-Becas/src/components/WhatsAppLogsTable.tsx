@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { WhatsAppLog } from '../types'
+import { API_BASE_URL } from '../config/api'
 
 export default function WhatsAppLogsTable() {
   const [logs, setLogs] = useState<WhatsAppLog[]>([])
@@ -8,7 +9,7 @@ export default function WhatsAppLogsTable() {
   const fetchLogs = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:8080/api/bot/logs')
+      const res = await fetch(`${API_BASE_URL}/api/bot/logs`)
       if (res.ok) {
         const data = await res.json()
         setLogs(data)

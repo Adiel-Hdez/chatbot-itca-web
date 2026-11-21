@@ -4,6 +4,7 @@ import FaqModal from '../components/FaqModal'
 import WhatsAppSimulator from '../components/WhatsAppSimulator'
 import WhatsAppLogsTable from '../components/WhatsAppLogsTable'
 import WhatsAppConnectionInfo from '../components/WhatsAppConnectionInfo'
+import { API_BASE_URL } from '../config/api'
 
 interface AdminDashboardPageProps {
   user: AdminUser
@@ -29,8 +30,8 @@ export default function AdminDashboardPage({ user, onLogout }: AdminDashboardPag
     setLoading(true)
     try {
       const [faqsRes, statsRes] = await Promise.all([
-        fetch('http://localhost:8080/api/faqs'),
-        fetch('http://localhost:8080/api/faqs/stats'),
+        fetch(`${API_BASE_URL}/api/faqs`),
+        fetch(`${API_BASE_URL}/api/faqs/stats`),
       ])
 
       if (faqsRes.ok) {
@@ -76,7 +77,7 @@ export default function AdminDashboardPage({ user, onLogout }: AdminDashboardPag
 
   const handleToggleFaq = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/faqs/${id}/toggle`, {
+      const res = await fetch(`${API_BASE_URL}/api/faqs/${id}/toggle`, {
         method: 'PATCH',
       })
       if (res.ok) {
@@ -96,7 +97,7 @@ export default function AdminDashboardPage({ user, onLogout }: AdminDashboardPag
 
   const handleDeleteFaq = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/faqs/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/faqs/${id}`, {
         method: 'DELETE',
       })
       if (res.ok || res.status === 204) {

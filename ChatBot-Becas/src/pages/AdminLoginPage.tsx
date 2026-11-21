@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from 'react'
 import type { AdminUser } from '../types'
+import { API_BASE_URL } from '../config/api'
 
 interface AdminLoginPageProps {
   onLogin: (user: AdminUser) => void
 }
 
-const API_URL = 'http://localhost:8080/api/admin/login'
+const API_URL = `${API_BASE_URL}/api/admin/login`
 
 export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
   const [correo, setCorreo] = useState('admin@itca.edu.sv')

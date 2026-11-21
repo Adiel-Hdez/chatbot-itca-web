@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react'
+import { API_BASE_URL } from '../config/api'
 
 interface Message {
   id: string
@@ -55,7 +56,7 @@ export default function WhatsAppSimulator() {
     setLoading(true)
 
     try {
-      const res = await fetch('http://localhost:8080/api/bot/message', {
+      const res = await fetch(`${API_BASE_URL}/api/bot/message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify({ message: textToSend.trim(), from: '503-simulador' }),

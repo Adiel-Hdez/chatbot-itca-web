@@ -1,5 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react'
 import type { Faq } from '../types'
+import { API_BASE_URL } from '../config/api'
 
 interface FaqModalProps {
   isOpen: boolean
@@ -95,7 +96,7 @@ export default function FaqModal({ isOpen, faq, categories, onClose, onSave }: F
     }
 
     try {
-      const url = faq ? `http://localhost:8080/api/faqs/${faq.id}` : 'http://localhost:8080/api/faqs'
+      const url = faq ? `${API_BASE_URL}/api/faqs/${faq.id}` : `${API_BASE_URL}/api/faqs`
       const method = faq ? 'PUT' : 'POST'
 
       const res = await fetch(url, {

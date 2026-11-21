@@ -1,0 +1,21 @@
+[build]
+  base = "ChatBot-Becas"
+  publish = "dist"
+  command = "npm run build"
+
+[functions]
+  directory = "backend/netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirección de llamadas a la API hacia la función serverless de Express + Sequelize
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Redirección para el enrutador SPA de React
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

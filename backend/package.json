@@ -1,0 +1,20 @@
+{
+  "name": "itca-chatbot-backend",
+  "version": "1.0.0",
+  "description": "Backend API para Chatbot ITCA-FEPADE Santa Ana con Express, Sequelize y Supabase PostgreSQL",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5",
+    "serverless-http": "^3.2.0"
+  }
+}
