@@ -1,16 +1,16 @@
 [build]
-  base = "ChatBot-Becas"
-  publish = "dist"
-  command = "npm run build"
+  command = "npm --prefix ChatBot-Becas install && npm --prefix ChatBot-Becas run build"
+  publish = "ChatBot-Becas/dist"
+  functions = "netlify/functions"
 
 [functions]
-  directory = "backend/netlify/functions"
   node_bundler = "esbuild"
+  external_node_modules = ["pg-hstore"]
 
-# Redirección de llamadas a la API hacia la función serverless de Express + Sequelize
+# Redirección de llamadas de API hacia la función serverless de Express + Sequelize
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/api"
   status = 200
   force = true
 

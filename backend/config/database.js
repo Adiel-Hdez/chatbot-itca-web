@@ -1,3 +1,4 @@
+import pg from 'pg'
 import { Sequelize } from 'sequelize'
 import dotenv from 'dotenv'
 
@@ -10,6 +11,7 @@ let sequelize
 if (connectionString) {
   sequelize = new Sequelize(connectionString, {
     dialect: 'postgres',
+    dialectModule: pg,
     protocol: 'postgres',
     dialectOptions: {
       ssl: {
@@ -19,14 +21,13 @@ if (connectionString) {
     },
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     pool: {
-      max: 10,
+      max: 5,
       min: 0,
       acquire: 30000,
       idle: 10000,
     },
   })
 } else {
-  // Configuración por defecto o variables separadas
   sequelize = new Sequelize(
     process.env.DB_NAME || 'postgres',
     process.env.DB_USER || 'postgres',
@@ -35,6 +36,7 @@ if (connectionString) {
       host: process.env.DB_HOST || 'localhost',
       port: process.env.DB_PORT || 5432,
       dialect: 'postgres',
+      dialectModule: pg,
       dialectOptions: {
         ssl: process.env.DB_SSL === 'true' ? { require: true, rejectUnauthorized: false } : false,
       },

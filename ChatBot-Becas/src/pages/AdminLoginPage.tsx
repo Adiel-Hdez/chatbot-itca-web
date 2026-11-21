@@ -31,6 +31,17 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
         body: JSON.stringify({ correo: correo.trim(), password: password.trim() }),
       })
 
+      if (!res.ok) {
+        const text = await res.text()
+        try {
+          const parsed = JSON.parse(text)
+          setError(parsed.message || parsed.error || `Error del servidor (${res.status})`)
+        } catch {
+          setError(`Error del servidor (${res.status}). Verifica el backend.`)
+        }
+        return
+      }
+
       const data = await res.json()
       if (data.success) {
         onLogin({
@@ -42,8 +53,12 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
       } else {
         setError(data.message || 'Credenciales incorrectas.')
       }
-    } catch {
-      setError('No se pudo conectar con el servidor backend (puerto 8080).')
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(`No se pudo conectar con el servidor: ${err.message}`)
+      } else {
+        setError('No se pudo conectar con el servidor backend.')
+      }
     } finally {
       setLoading(false)
     }

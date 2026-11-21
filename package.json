@@ -1,0 +1,19 @@
+{
+  "name": "itca-chatbot-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm --prefix ChatBot-Becas install && npm --prefix ChatBot-Becas run build",
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5",
+    "serverless-http": "^3.2.0"
+  }
+}

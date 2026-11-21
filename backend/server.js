@@ -38,10 +38,10 @@ app.get('/api/status', (req, res) => {
   })
 })
 
-// Rutas de la API
-app.use('/api/faqs', faqRoutes)
-app.use('/api/admin', adminRoutes)
-app.use('/api/bot', botRoutes)
+// Rutas de la API (soporta tanto /api/ruta como /ruta en funciones serverless)
+app.use(['/api/faqs', '/faqs'], faqRoutes)
+app.use(['/api/admin', '/admin'], adminRoutes)
+app.use(['/api/bot', '/bot'], botRoutes)
 
 // Inicialización de la base de datos y arranque del servidor
 export async function initServer() {
