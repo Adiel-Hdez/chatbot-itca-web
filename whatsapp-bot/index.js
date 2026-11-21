@@ -8,7 +8,7 @@ import pino from 'pino'
 import express from 'express'
 import cors from 'cors'
 
-const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:8080/api/bot/message'
+const BACKEND_API_URL = process.env.BACKEND_API_URL || 'https://chatbot-itca.netlify.app/api/bot/message'
 const PORT = process.env.PORT || 3001
 
 const app = express()
